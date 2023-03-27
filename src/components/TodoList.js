@@ -8,11 +8,11 @@ export default function TodoList() {
 
   return state.todoList.length ? (
     <ul>
-      {state.todoList.map((l) =>
-        l.edit ? (
-          <EditTodo key={l.id} list={l} />
+      {state.todoList.map((list) =>
+        list.edit ? (
+          <EditTodo key={list.id} list={list} />
         ) : (
-          <TodoItem key={l.id} list={l} />
+          <TodoItem key={list.id} list={list} />
         )
       )}
     </ul>
