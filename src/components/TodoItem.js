@@ -3,33 +3,31 @@ import { todoDispatchContext } from "../context/todoContext";
 import EditTodo from "./EditTodo";
 import styles from "./TodoItem.module.scss";
 
-export default function TodoItem({ name }) {
+export default function TodoItem({ list }) {
   const dispatch = useContext(todoDispatchContext);
-
-  if (!name.edit) {
     return (
       <li
-        className={`d-flex mb20 p10 align-items-center ${styles.TodoItem} ${name.id}`}
+        className={`d-flex mb20 p10 align-items-center ${styles.TodoItem} ${list.id}`}
       >
         <span className={`${styles.Name} flex-fill mr10`}>
-          {name.do ? name.content + "✓" : name.content}
+          {list.do ? list.content + "✓" : list.content}
         </span>
         <button
           className={`btn btn-primary mr10`}
           onClick={() =>
             dispatch({
               type: "TOGGLE_TODO",
-              id: name.id,
+              id: list.id,
             })
           }
         >
-          {name.do ? "Fait" : "A Faire"}
+          {list.do ? "Fait" : "A Faire"}
         </button>
         <button
           onClick={() =>
             dispatch({
               type: "EDIT_TODO",
-              id: name.id,
+              id: list.id,
             })
           }
           className="btn btn-primary mr10"
@@ -41,7 +39,7 @@ export default function TodoItem({ name }) {
           onClick={() => {
             dispatch({
               type: "DELETE_TODO",
-              id: name.id,
+              id: list.id,
             });
             console.log("bla");
           }}
@@ -50,7 +48,4 @@ export default function TodoItem({ name }) {
         </button>
       </li>
     );
-  } else {
-    return <EditTodo list={name} />;
-  }
 }

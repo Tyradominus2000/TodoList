@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { todoStateContext } from "../context/todoContext";
+import EditTodo from "./EditTodo";
 import TodoItem from "./TodoItem";
 
 export default function TodoList() {
@@ -7,9 +8,13 @@ export default function TodoList() {
 
   return state.todoList.length ? (
     <ul>
-      {state.todoList.map((l) => (
-        <TodoItem key={l.id} name={l} />
-      ))}
+      {state.todoList.map((l) =>
+        l.edit ? (
+          <EditTodo key={l.id} list={l} />
+        ) : (
+          <TodoItem key={l.id} list={l} />
+        )
+      )}
     </ul>
   ) : (
     <>
