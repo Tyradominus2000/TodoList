@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { todoDispatchContext } from "../context/todoContext";
 
-export default function EditTodo({  list, changeTodo , editTodo }) {
+export default function EditTodo({ list, changeTodo }) {
   const [value, setValue] = useState(list.content);
+  const dispatch = useContext(todoDispatchContext);
 
   function handleChange(e) {
     console.log(e.target.value);
@@ -13,11 +15,14 @@ export default function EditTodo({  list, changeTodo , editTodo }) {
     }
   }
 
-
   function handleClick() {
     let valueTrim = value.trim();
     if (valueTrim.length) {
-      editTodo(list.id);
+      dispatch({
+        type: "EDIT_TODO",
+        id: list.id,
+      });
+
       console.log("value trim");
       setValue("");
     } else {
@@ -26,16 +31,19 @@ export default function EditTodo({  list, changeTodo , editTodo }) {
     }
   }
 
-  function handleClickSave(){
+  function handleClickSave() {
     let valueTrim = value.trim();
     if (valueTrim.length) {
-      changeTodo(list.id, value);
+      dispatch({
+        type: "CHANGE_TODO",
+        id: list.id,
+        content: value,
+      });
       setValue("");
     } else {
       setValue("");
     }
   }
-
 
   return (
     <li className="d-flex mb20 p10 align-items-center">

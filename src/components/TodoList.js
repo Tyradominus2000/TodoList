@@ -1,18 +1,11 @@
 import TodoItem from "./TodoItem";
 
-export default function TodoList({ list, deleteTodo, editTodo, toggleTodo, changeTodo }) {
+export default function TodoList({ list }) {
   console.log({ list });
   return list.length ? (
     <ul>
       {list.map((l) => (
-        <TodoItem
-          key={list.id}
-          name={l}
-          deleteTodo={deleteTodo}
-          toggleTodo={toggleTodo}
-          editTodo={editTodo}
-          changeTodo={changeTodo}
-        />
+        <TodoItem key={list.id} name={l} />
       ))}
     </ul>
   ) : (

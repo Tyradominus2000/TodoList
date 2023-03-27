@@ -1,8 +1,11 @@
 import styles from "./AddTodo.module.scss";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { todoDispatchContext } from "../context/todoContext";
 
-export default function AddTodo({ getList }) {
+export default function AddTodo() {
   const [value, setValue] = useState("");
+  const dispatch = useContext(todoDispatchContext);
+
   function handleChange(e) {
     console.log(e.target.value);
     const todoValue = e.target.value;
@@ -16,9 +19,9 @@ export default function AddTodo({ getList }) {
   function handleClick() {
     let valueTrim = value.trim();
     if (valueTrim.length) {
-      getList(value);
+      dispatch({ type: "ADD_TODO", content: valueTrim });
       setValue("");
-    }else{
+    } else {
       setValue("");
     }
   }
