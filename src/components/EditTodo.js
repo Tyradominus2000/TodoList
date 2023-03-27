@@ -22,12 +22,9 @@ export default function EditTodo({ list, changeTodo }) {
         type: "EDIT_TODO",
         id: list.id,
       });
-
-      console.log("value trim");
       setValue("");
     } else {
       setValue("");
-      console.log("value trim false");
     }
   }
 
