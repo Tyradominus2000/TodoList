@@ -23,7 +23,7 @@ function App() {
               <div>
                 <AddTodo />
               </div>
-              <TodoList list={state.todoList} />
+              <TodoList />
             </div>
           </div>
         </todoDispatchContext.Provider>

@@ -1,11 +1,14 @@
+import { useContext } from "react";
+import { todoStateContext } from "../context/todoContext";
 import TodoItem from "./TodoItem";
 
-export default function TodoList({ list }) {
-  console.log({ list });
-  return list.length ? (
+export default function TodoList() {
+  const state = useContext(todoStateContext);
+
+  return state.todoList.length ? (
     <ul>
-      {list.map((l) => (
-        <TodoItem key={list.id} name={l} />
+      {state.todoList.map((l) => (
+        <TodoItem key={l.id} name={l} />
       ))}
     </ul>
   ) : (
